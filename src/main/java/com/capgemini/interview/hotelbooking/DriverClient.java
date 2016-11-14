@@ -20,11 +20,16 @@ public class DriverClient {
 	public WebDriver getDriver() {
 		switch(Config.Ui.browser) {
 		case Chrome: 
-			System.setProperty("webdriver.chrome.driver", "/Users/sarthakdayanand/Documents/Automation/chromedriver");
+			if(System.getProperty("os.name").contains("Mac"))
+				System.setProperty("webdriver.chrome.driver", "/Users/sarthakdayanand/Documents/Automation/chromedriver");
+			else
+				System.setProperty("webdriver.chrome.driver", "give path of chromedriver in windows");
 			return new ChromeDriver();
 		
 		case Firefox:
-			System.setProperty("webdriver.firefox.bin", "/Applications/IBM Firefox.app/Contents/MacOS/firefox-bin");
+			if(System.getProperty("os.name").contains("Mac"))
+				System.setProperty("webdriver.firefox.bin", "/Applications/IBM Firefox.app/Contents/MacOS/firefox-bin");
+	
 			ProfilesIni profile = new ProfilesIni();
 		    FirefoxProfile ffprofile = profile.getProfile("default");
 		    return new FirefoxDriver(ffprofile);

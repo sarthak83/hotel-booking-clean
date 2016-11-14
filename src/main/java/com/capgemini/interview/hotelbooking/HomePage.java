@@ -79,7 +79,7 @@ public class HomePage {
 				client.driver.findElement(By.xpath("/html/body/div[1]/div["+i+"]/div[2]/span")).click();
 				deleted = true;
 				//Update 2: After udpate 1, if last hotel was deleted, StaleElementException on line 85. So had to wait only if NOT last element. 
-				//Update 3: Line 83 needed for row element to be recreated. 
+				//Update 3: Line 83 needed for row element to be recreated. If not last row then wait till hotel element is recreated. FOOL PROOF! 
 				Utilities.wait(By.xpath("/html/body/div[1]/div["+(i)+"]"), client);
 				if(!client.driver.findElement(By.xpath("/html/body/div[1]/div["+(i)+"]")).getAttribute("class").equalsIgnoreCase("row")) 
 					Utilities.wait(By.xpath("/html/body/div[1]/div["+i+"]/div[1]/div[1]/p"), client);
